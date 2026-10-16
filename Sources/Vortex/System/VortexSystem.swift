@@ -46,6 +46,11 @@ public class VortexSystem: Codable, Identifiable, Equatable, Hashable {
     /// The last time this particle system was updated.
     var lastUpdate = Date.now.timeIntervalSince1970
 
+    /// The longest time step a single update will simulate. Without this, resuming
+    /// after a long pause (app suspended, view offscreen) would try to create every
+    /// particle for the whole gap in one frame and hang the main thread.
+    static let maximumFrameDelta: TimeInterval = 0.1
+
     /// The total number of particles emitted by this system.
     var emissionCount = 0
 

@@ -21,7 +21,7 @@ extension VortexSystem {
         let drawDivisor = drawSize.height / drawSize.width
         let currentTimeInterval = date.timeIntervalSince1970
 
-        let delta = currentTimeInterval - lastUpdate
+        let delta = min(max(currentTimeInterval - lastUpdate, 0), Self.maximumFrameDelta)
         lastUpdate = currentTimeInterval
 
         if isEmitting && lastUpdate - lastIdleTime > emissionDuration {
